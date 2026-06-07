@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCTV LiveKit Test Room</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f5f5f4;
+    --bg-tertiary: #eeece8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b6b6b;
+    --border: rgba(0,0,0,0.12);
+    --border-hover: rgba(0,0,0,0.25);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --success-bg: #eaf3de;
+    --success-text: #3b6d11;
+    --danger-bg: #fcebeb;
+    --danger-text: #a32d2d;
+    --info-bg: #e6f1fb;
+    --info-text: #185fa5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1c;
+      --bg-secondary: #252525;
+      --bg-tertiary: #2e2e2e;
+      --text-primary: #f0ede8;
+      --text-secondary: #9a9a9a;
+      --border: rgba(255,255,255,0.12);
+      --border-hover: rgba(255,255,255,0.25);
+      --success-bg: #17340a;
+      --success-text: #c0dd97;
+      --danger-bg: #501313;
+      --danger-text: #f09595;
+      --info-bg: #042c53;
+      --info-text: #85b7eb;
+    }
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .header {
+    margin-bottom: 1.5rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+  }
+
+  .logo-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e24b4a;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .card {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: var(--radius-md);
+  }
+
+  .badge-success { background: var(--success-bg); color: var(--success-text); }
+  .badge-danger  { background: var(--danger-bg);  color: var(--danger-text);  }
+  .badge-info    { background: var(--info-bg);    color: var(--info-text);    }
+
+  .field-group {
+    margin-bottom: 0.875rem;
+  }
+
+  .field-group:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    height: 36px;
+    padding: 0 10px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color 0.15s;
+    font-family: inherit;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 0 3px rgba(55,138,221,0.15);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 14px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 400;
+    color: var(--text-primary);
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 0.1s, transform 0.1s;
+  }
+
+  button:hover:not(:disabled) {
+    background: var(--bg-secondary);
+  }
+
+  button:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .btn-primary {
+    background: var(--info-bg);
+    color: var(--info-text);
+    border-color: transparent;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: #b5d4f4;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 0.75rem;
+  }
+
+  .video-box {
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .video-box video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-label {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .chat-box {
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    height: 160px;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .chat-msg {
+    margin-bottom: 5px;
+  }
+
+  .chat-msg .who {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .chat-msg .txt {
+    color: var(--text-secondary);
+  }
+
+  .chat-msg.system .txt {
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  .chat-input-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .chat-input-row input {
+    flex: 1;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.5;
+  }
+
+  .spin {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo">
+      <div class="logo-dot"></div>
+      <h1>BCTV LiveKit test room</h1>
+    </div>
+    <p>No account needed. Enter a room name and display name, then join to test live video and chat.</p>
+  </div>
+
+  <div class="card">
+    <div class="status-row">
+      <span class="section-title" style="margin:0">Connection</span>
+      <span class="badge badge-danger" id="status-badge">
+        <i class="ti ti-wifi-off"></i> Disconnected
+      </span>
+    </div>
+
+    <div class="field-group">
+      <label for="inp-room">Room name</label>
+      <input id="inp-room" type="text" placeholder="e.g. bctv-demo-room" value="bctv-demo-room">
+    </div>
+
+    <div class="field-group">
+      <label for="inp-name">Your display name</label>
+      <input id="inp-name" type="text" placeholder="e.g. Duke">
+    </div>
+
+    <div class="field-group">
+      <label for="inp-url">LiveKit server URL</label>
+      <input id="inp-url" type="text" value="ws://213.136.65.25:7880">
+    </div>
+
+    <div class="field-group">
+      <label for="inp-key">API key</label>
+      <input id="inp-key" type="text" value="bctvapikey">
+    </div>
+
+    <div class="field-group">
+      <label for="inp-secret">API secret</label>
+      <input id="inp-secret" type="password" value="035f5cfdff25c751619356e2fff174b8ba4bf7bef58f372eb1894c96e1d2bd58">
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-primary" id="btn-connect" onclick="connectRoom()">
+      <i class="ti ti-video"></i> Join room
+    </button>
+    <button id="btn-disconnect" onclick="disconnectRoom()" disabled>
+      <i class="ti ti-x"></i> Leave room
+    </button>
+  </div>
+
+  <div class="card" id="room-section" style="display:none">
+    <div class="section-title">Participants</div>
+    <div class="video-grid" id="video-grid">
+      <div class="video-box" id="local-video-box">
+        <i class="ti ti-user" style="font-size:24px"></i>
+        <span>Your camera</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="chat-section" style="display:none">
+    <div class="section-title">Live chat</div>
+    <div class="chat-box" id="chat-box"></div>
+    <div class="chat-input-row">
+      <input id="chat-input" type="text" placeholder="Type a message and press Enter..."
+             onkeydown="if(event.key==='Enter') sendChat()">
+      <button onclick="sendChat()"><i class="ti ti-send"></i></button>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <i class="ti ti-info-circle" style="font-size:14px;margin-top:1px;flex-shrink:0"></i>
+    Multiple people can open this page, enter the same room name, and see each other live.
+    Share this page URL with testers.
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+<script>
+let room = null;
+
+function setStatus(text, type) {
+  const b = document.getElementById('status-badge');
+  b.className = 'badge badge-' + type;
+  const iconMap = { success: 'ti-wifi', danger: 'ti-wifi-off', info: 'ti-loader' };
+  const iconClass = iconMap[type] || 'ti-wifi';
+  const spin = type === 'info' ? ' spin' : '';
+  b.innerHTML = `<i class="ti ${iconClass}${spin}"></i> ${text}`;
+}
+
+function addChat(who, txt, isSystem) {
+  const box = document.getElementById('chat-box');
+  const d = document.createElement('div');
+  d.className = 'chat-msg' + (isSystem ? ' system' : '');
+  if (isSystem) {
+    d.innerHTML = `<span class="txt">${txt}</span>`;
+  } else {
+    d.innerHTML = `<span class="who">${who}: </span><span class="txt">${txt}</span>`;
+  }
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+
+async function generateToken(apiKey, apiSecret, roomName, identity) {
+  const enc = new TextEncoder();
+  const b64url = buf =>
+    btoa(String.fromCharCode(...new Uint8Array(buf)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const b64urlStr = str =>
+    btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+  const header  = b64urlStr(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+  const now     = Math.floor(Date.now() / 1000);
+  const payload = b64urlStr(JSON.stringify({
+    iss: apiKey, sub: identity, name: identity,
+    nbf: now, exp: now + 21600,
+    video: { room: roomName, roomJoin: true, canPublish: true, canSubscribe: true, canPublishData: true }
+  }));
+
+  const signingInput = `${header}.${payload}`;
+  const key = await crypto.subtle.importKey(
+    'raw', enc.encode(apiSecret),
+    { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
+  );
+  const sig = await crypto.subtle.sign('HMAC', key, enc.encode(signingInput));
+  return `${signingInput}.${b64url(sig)}`;
+}
+
+async function connectRoom() {
+  const roomName   = document.getElementById('inp-room').value.trim() || 'bctv-demo-room';
+  const name       = document.getElementById('inp-name').value.trim() || 'Guest-' + Math.floor(Math.random() * 9000 + 1000);
+  const serverUrl  = document.getElementById('inp-url').value.trim();
+  const apiKey     = document.getElementById('inp-key').value.trim();
+  const apiSecret  = document.getElementById('inp-secret').value.trim();
+
+  if (!serverUrl || !apiKey || !apiSecret) {
+    setStatus('Fill in all fields', 'danger');
+    return;
+  }
+
+  setStatus('Connecting...', 'info');
+  document.getElementById('btn-connect').disabled = true;
+
+  try {
+    const token = await generateToken(apiKey, apiSecret, roomName, name);
+    room = new LivekitClient.Room();
+
+    room.on(LivekitClient.RoomEvent.Connected, async () => {
+      setStatus('Connected — ' + roomName, 'success');
+      document.getElementById('btn-disconnect').disabled = false;
+      document.getElementById('room-section').style.display = 'block';
+      document.getElementById('chat-section').style.display = 'block';
+      addChat('', 'You joined ' + roomName, true);
+
+      try {
+        const tracks = await LivekitClient.createLocalTracks({ audio: true, video: true });
+        for (const track of tracks) {
+          await room.localParticipant.publishTrack(track);
+          if (track.kind === 'video') {
+            const box = document.getElementById('local-video-box');
+            box.innerHTML = '';
+            const el = track.attach();
+            box.appendChild(el);
+            const lbl = document.createElement('div');
+            lbl.className = 'video-label';
+            lbl.textContent = name + ' (you)';
+            box.appendChild(lbl);
+          }
+        }
+      } catch (e) {
+        addChat('', 'Camera/mic unavailable: ' + e.message, true);
+      }
+    });
+
+    room.on(LivekitClient.RoomEvent.Disconnected, () => {
+      setStatus('Disconnected', 'danger');
+      document.getElementById('btn-connect').disabled = false;
+      document.getElementById('btn-disconnect').disabled = true;
+      document.getElementById('room-section').style.display = 'none';
+      document.getElementById('chat-section').style.display = 'none';
+    });
+
+    room.on(LivekitClient.RoomEvent.ParticipantConnected, p => {
+      addChat('', p.identity + ' joined', true);
+      const grid = document.getElementById('video-grid');
+      const box = document.createElement('div');
+      box.className = 'video-box';
+      box.id = 'participant-' + p.sid;
+      box.innerHTML = `<i class="ti ti-user" style="font-size:24px"></i><span>${p.identity}</span>`;
+      grid.appendChild(box);
+    });
+
+    room.on(LivekitClient.RoomEvent.ParticipantDisconnected, p => {
+      addChat('', p.identity + ' left', true);
+      const box = document.getElementById('participant-' + p.sid);
+      if (box) box.remove();
+    });
+
+    room.on(LivekitClient.RoomEvent.TrackSubscribed, (track, pub, participant) => {
+      if (track.kind === 'video') {
+        const boxId = 'participant-' + participant.sid;
+        const box = document.getElementById(boxId);
+        if (!box) return;
+        box.innerHTML = '';
+        const el = track.attach();
+        box.appendChild(el);
+        const lbl = document.createElement('div');
+        lbl.className = 'video-label';
+        lbl.textContent = participant.identity;
+        box.appendChild(lbl);
+      }
+    });
+
+    room.on(LivekitClient.RoomEvent.DataReceived, (data, participant) => {
+      try {
+        const msg = JSON.parse(new TextDecoder().decode(data));
+        if (msg.type === 'chat') {
+          addChat(participant?.identity || 'Unknown', msg.text);
+        }
+      } catch (e) {}
+    });
+
+    await room.connect(serverUrl, token);
+
+  } catch (err) {
+    setStatus('Error: ' + err.message, 'danger');
+    document.getElementById('btn-connect').disabled = false;
+  }
+}
+
+async function disconnectRoom() {
+  if (room) { await room.disconnect(); room = null; }
+}
+
+async function sendChat() {
+  const inp = document.getElementById('chat-input');
+  const txt = inp.value.trim();
+  if (!txt || !room) return;
+  const myName = document.getElementById('inp-name').value.trim() || 'You';
+  const data = new TextEncoder().encode(JSON.stringify({ type: 'chat', text: txt }));
+  await room.localParticipant.publishData(data, { reliable: true });
+  addChat(myName + ' (you)', txt);
+  inp.value = '';
+}
+</script>
+</body>
+</html>
