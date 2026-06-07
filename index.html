@@ -206,7 +206,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
       </div>
       <div class="field">
         <label>LiveKit server URL</label>
-        <input id="h-url" type="text" value="ws://213.136.65.25:7880">
+        <input id="h-url" type="text" value="wss://213.136.65.25.nip.io">
       </div>
       <div class="field">
         <label>API key</label>
@@ -470,7 +470,7 @@ async function joinViewer() {
 
   // For demo: use default server/key/secret since viewer link doesn't carry them
   // In production these come from your backend token endpoint
-  serverUrl = 'ws://213.136.65.25:7880';
+  serverUrl = 'wss://213.136.65.25.nip.io';
   apiKey = 'bctvapikey';
   apiSecret = '035f5cfdff25c751619356e2fff174b8ba4bf7bef58f372eb1894c96e1d2bd58';
   myRoom = code;
