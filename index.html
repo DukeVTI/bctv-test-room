@@ -31,7 +31,6 @@
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg-3);color:var(--text);min-height:100vh}
 
-/* ── LOBBY ── */
 #lobby{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem 1rem}
 .lobby-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:2rem;width:100%;max-width:440px}
 .lobby-logo{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
@@ -50,13 +49,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .btn-full:hover:not(:disabled){background:var(--bg-2)}
 .btn-full.primary{background:var(--info-bg);color:var(--info-txt);border-color:transparent}
 .btn-full.primary:hover:not(:disabled){filter:brightness(0.95)}
-.btn-full.danger-btn{background:var(--danger-bg);color:var(--danger-txt);border-color:transparent}
 .divider{text-align:center;font-size:12px;color:var(--text-3);margin:1rem 0;position:relative}
 .divider::before,.divider::after{content:'';position:absolute;top:50%;width:42%;height:0.5px;background:var(--border)}
 .divider::before{left:0}.divider::after{right:0}
 #lobby-err{display:none;font-size:13px;color:var(--danger-txt);background:var(--danger-bg);padding:8px 12px;border-radius:var(--radius);margin-bottom:1rem}
 
-/* ── STUDIO ── */
 #studio{display:none;height:100vh;flex-direction:column}
 .topbar{height:52px;background:var(--bg);border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;flex-shrink:0}
 .topbar-left{display:flex;align-items:center;gap:10px}
@@ -74,7 +71,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .studio-body{flex:1;display:grid;grid-template-columns:1fr 320px;overflow:hidden}
 @media(max-width:700px){.studio-body{grid-template-columns:1fr;grid-template-rows:1fr auto}}
 
-/* main area */
 .main-area{display:flex;flex-direction:column;overflow:hidden;background:var(--bg-3)}
 .video-stage{flex:1;display:grid;gap:8px;padding:12px;align-content:start;overflow-y:auto}
 .video-stage.solo{grid-template-columns:1fr}
@@ -82,10 +78,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .video-stage.trio,.video-stage.quad{grid-template-columns:1fr 1fr}
 .vbox{background:#111;border-radius:var(--radius);aspect-ratio:16/9;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
 .vbox video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.vbox .avatar{width:56px;height:56px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--text-2)}
-.vbox .vlabel{position:absolute;bottom:6px;left:8px;background:rgba(0,0,0,0.6);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;z-index:2;display:flex;align-items:center;gap:5px}
+.vbox .vlabel{position:absolute;bottom:6px;left:8px;background:rgba(0,0,0,0.6);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;z-index:2}
 .vbox .host-badge-v{position:absolute;top:6px;left:8px;background:rgba(226,75,74,0.85);color:#fff;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500}
-.vbox .muted-icon{position:absolute;top:6px;right:8px;background:rgba(0,0,0,0.5);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+.vbox .muted-overlay{position:absolute;inset:0;background:#1a1a1a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;z-index:3}
+.vbox .muted-overlay i{font-size:32px;color:var(--text-3)}
+.vbox .muted-overlay span{font-size:13px;color:var(--text-3)}
 
 .controls-bar{height:64px;background:var(--bg);border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;padding:0 1rem}
 .ctrl-btn{width:44px;height:44px;border-radius:50%;border:0.5px solid var(--border);background:var(--bg-2);color:var(--text);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:background 0.1s,transform 0.1s;font-family:inherit}
@@ -97,14 +94,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .ctrl-btn.go-live.on{background:var(--bg-2);color:var(--text);border-color:var(--border)}
 .ctrl-sep{width:0.5px;height:28px;background:var(--border);margin:0 4px}
 
-/* sidebar */
 .sidebar{background:var(--bg);border-left:0.5px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
 .sidebar-tabs{display:flex;border-bottom:0.5px solid var(--border);flex-shrink:0}
 .stab{flex:1;padding:10px 4px;font-size:12px;font-family:inherit;background:transparent;border:none;cursor:pointer;color:var(--text-2);border-bottom:2px solid transparent;transition:color 0.1s,border-color 0.1s;display:flex;align-items:center;justify-content:center;gap:5px}
 .stab.active{color:var(--text);border-bottom-color:var(--red)}
 .stab .cnt{background:var(--danger-bg);color:var(--danger-txt);font-size:10px;padding:1px 5px;border-radius:10px;font-weight:500}
 
-/* chat */
 #chat-panel,#queue-panel,#share-panel{display:none;flex:1;flex-direction:column;overflow:hidden}
 #chat-panel.visible,#queue-panel.visible,#share-panel.visible{display:flex}
 .chat-messages{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
@@ -112,7 +107,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .chat-msg .who{font-weight:500;color:var(--text)}
 .chat-msg .txt{color:var(--text-2)}
 .chat-msg.system{font-style:italic;color:var(--text-3)}
-.chat-msg.pinned{background:var(--warn-bg);color:var(--warn-txt);padding:5px 8px;border-radius:var(--radius);font-style:normal}
 .chat-input-area{border-top:0.5px solid var(--border);padding:10px 12px;flex-shrink:0}
 .chat-input-row{display:flex;gap:6px}
 .chat-input-row input{flex:1;height:34px;padding:0 10px;font-size:13px;color:var(--text);background:var(--bg-2);border:0.5px solid var(--border);border-radius:var(--radius);outline:none;font-family:inherit}
@@ -120,7 +114,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .chat-input-row input:disabled{opacity:0.5;cursor:not-allowed}
 .locked-banner{background:var(--warn-bg);color:var(--warn-txt);font-size:12px;padding:8px 12px;display:flex;align-items:center;gap:6px;border-top:0.5px solid var(--border);flex-shrink:0}
 
-/* queue */
 .queue-list{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
 .queue-empty{text-align:center;padding:2rem;font-size:13px;color:var(--text-3)}
 .queue-item{background:var(--bg-2);border:0.5px solid var(--border);border-radius:var(--radius);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -133,7 +126,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .active-caller{background:var(--info-bg);border-color:transparent}
 .active-caller .qi-name{color:var(--info-txt)}
 
-/* share panel */
 .share-content{flex:1;padding:16px;display:flex;flex-direction:column;gap:12px}
 .share-box{background:var(--bg-2);border:0.5px solid var(--border);border-radius:var(--radius);padding:10px 12px}
 .share-box .share-label{font-size:11px;color:var(--text-3);margin-bottom:6px}
@@ -141,7 +133,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .copy-btn{margin-top:8px;height:30px;padding:0 12px;font-size:12px;border-radius:var(--radius);border:0.5px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px}
 .copy-btn:hover{background:var(--bg-2)}
 
-/* host-only strip */
 .host-strip{border-top:0.5px solid var(--border);padding:10px 12px;flex-shrink:0;display:flex;flex-direction:column;gap:6px}
 .host-strip-title{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em}
 .host-actions{display:flex;gap:6px;flex-wrap:wrap}
@@ -149,136 +140,69 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .h-btn:hover{background:var(--bg-2)}
 .h-btn.active{background:var(--warn-bg);color:var(--warn-txt);border-color:transparent}
 
-/* viewer waiting */
 #viewer-waiting{display:none;flex:1;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:2rem;text-align:center}
 #viewer-waiting p{font-size:14px;color:var(--text-2)}
 #viewer-waiting h2{font-size:18px;font-weight:500}
 
-/* spinner */
 .spin{animation:spin 0.9s linear infinite;display:inline-block}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
-/* scrollbar */
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:2px}
-
-/* small screen sidebar */
-@media(max-width:700px){
-  .studio-body{grid-template-rows:1fr 280px}
-  .sidebar{border-left:none;border-top:0.5px solid var(--border)}
-}
+@media(max-width:700px){.studio-body{grid-template-rows:1fr 280px}.sidebar{border-left:none;border-top:0.5px solid var(--border)}}
 </style>
 </head>
 <body>
 
-<!-- ══ LOBBY ══ -->
 <div id="lobby">
   <div class="lobby-card">
     <div class="lobby-logo">
       <div class="dot"></div>
-      <div>
-        <h1>BCTV Live</h1>
-        <p>Broadcasters Community Television</p>
-      </div>
+      <div><h1>BCTV Live</h1><p>Broadcasters Community Television</p></div>
     </div>
-
     <div id="lobby-err"></div>
-
     <div class="tabs">
-      <button class="tab active" id="tab-host" onclick="switchTab('host')">
-        <i class="ti ti-broadcast"></i> Start a stream
-      </button>
-      <button class="tab" id="tab-viewer" onclick="switchTab('viewer')">
-        <i class="ti ti-eye"></i> Join as viewer
-      </button>
+      <button class="tab active" id="tab-host" onclick="switchTab('host')"><i class="ti ti-broadcast"></i> Start a stream</button>
+      <button class="tab" id="tab-viewer" onclick="switchTab('viewer')"><i class="ti ti-eye"></i> Join as viewer</button>
     </div>
 
-    <!-- HOST TAB -->
     <div id="panel-host">
-      <div class="field">
-        <label>Your name (displayed on stream)</label>
-        <input id="h-name" type="text" placeholder="e.g. Duke">
-      </div>
-      <div class="field">
-        <label>Stream title</label>
-        <input id="h-title" type="text" placeholder="e.g. BCTV Morning Show">
-      </div>
-      <div class="field">
-        <label>LiveKit server URL</label>
-        <input id="h-url" type="text" value="wss://213.136.65.25.nip.io">
-      </div>
-      <div class="field">
-        <label>API key</label>
-        <input id="h-key" type="text" value="bctvapikey">
-      </div>
-      <div class="field">
-        <label>API secret</label>
-        <input id="h-secret" type="password" value="035f5cfdff25c751619356e2fff174b8ba4bf7bef58f372eb1894c96e1d2bd58">
-        <div class="field-hint">Keep this private. Viewers never see it.</div>
-      </div>
-      <button class="btn-full primary" onclick="startHost()">
-        <i class="ti ti-broadcast"></i> Start stream
-      </button>
+      <div class="field"><label>Your name</label><input id="h-name" type="text" placeholder="e.g. Duke"></div>
+      <div class="field"><label>Stream title</label><input id="h-title" type="text" placeholder="e.g. BCTV Morning Show"></div>
+      <div class="field"><label>LiveKit server URL</label><input id="h-url" type="text" value="wss://213.136.65.25.nip.io"></div>
+      <div class="field"><label>API key</label><input id="h-key" type="text" value="bctvapikey"></div>
+      <div class="field"><label>API secret</label><input id="h-secret" type="password" value="035f5cfdff25c751619356e2fff174b8ba4bf7bef58f372eb1894c96e1d2bd58"><div class="field-hint">Keep this private. Viewers never see it.</div></div>
+      <button class="btn-full primary" onclick="startHost()"><i class="ti ti-broadcast"></i> Start stream</button>
     </div>
 
-    <!-- VIEWER TAB -->
     <div id="panel-viewer" style="display:none">
-      <div class="field">
-        <label>Your display name</label>
-        <input id="v-name" type="text" placeholder="e.g. Viewer123">
-      </div>
-      <div class="field">
-        <label>Room code (from host)</label>
-        <input id="v-room" type="text" placeholder="Paste room code here" id="v-room">
-        <div class="field-hint">The host shares this code or a link with you.</div>
-      </div>
-      <button class="btn-full primary" onclick="joinViewer()">
-        <i class="ti ti-arrow-right"></i> Join stream
-      </button>
+      <div class="field"><label>Your display name</label><input id="v-name" type="text" placeholder="e.g. Viewer123"></div>
+      <div class="field"><label>Room code (from host)</label><input id="v-room" type="text" placeholder="Paste room code here"><div class="field-hint">The host shares this code or a link with you.</div></div>
+      <button class="btn-full primary" onclick="joinViewer()"><i class="ti ti-arrow-right"></i> Join stream</button>
       <div class="divider">or</div>
-      <div class="field" style="margin-bottom:0">
-        <label>Full viewer link</label>
-        <input id="v-link" type="text" placeholder="Paste full viewer URL here">
-      </div>
-      <button class="btn-full" style="margin-top:8px" onclick="joinFromLink()">
-        <i class="ti ti-link"></i> Join from link
-      </button>
+      <div class="field" style="margin-bottom:0"><label>Full viewer link</label><input id="v-link" type="text" placeholder="Paste full viewer URL here"></div>
+      <button class="btn-full" style="margin-top:8px" onclick="joinFromLink()"><i class="ti ti-link"></i> Join from link</button>
     </div>
   </div>
 </div>
 
-<!-- ══ STUDIO ══ -->
 <div id="studio">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-logo">
-        <div class="dot"></div> BCTV Live
-      </div>
+      <div class="topbar-logo"><div class="dot"></div> BCTV Live</div>
       <span id="stream-title-display" style="font-size:13px;color:var(--text-2)"></span>
-      <span class="live-pill" id="live-pill" style="display:none">
-        <span class="live-dot"></span> LIVE
-      </span>
+      <span class="live-pill" id="live-pill" style="display:none"><span class="live-dot"></span> LIVE</span>
     </div>
     <div class="topbar-right">
-      <span class="badge badge-info" id="viewer-count-badge" style="display:none">
-        <i class="ti ti-users"></i> <span id="viewer-count">0</span>
-      </span>
+      <span class="badge badge-info" id="viewer-count-badge" style="display:none"><i class="ti ti-users"></i> <span id="viewer-count">0</span></span>
       <span class="badge" id="role-badge"></span>
-      <span class="badge badge-danger" id="conn-badge">
-        <i class="ti ti-wifi-off"></i> Connecting
-      </span>
+      <span class="badge badge-danger" id="conn-badge"><i class="ti ti-wifi-off"></i> Connecting</span>
     </div>
   </div>
 
   <div class="studio-body">
-    <!-- MAIN -->
     <div class="main-area">
-      <div class="video-stage solo" id="video-stage">
-        <!-- populated by JS -->
-      </div>
-
-      <!-- viewer waiting screen -->
+      <div class="video-stage solo" id="video-stage"></div>
       <div id="viewer-waiting">
         <i class="ti ti-broadcast" style="font-size:48px;color:var(--text-3)"></i>
         <h2>Waiting for host</h2>
@@ -286,111 +210,57 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
       </div>
 
       <div class="controls-bar">
-        <!-- HOST controls -->
         <div id="host-controls" style="display:none;align-items:center;gap:8px;width:100%;justify-content:center">
-          <button class="ctrl-btn go-live" id="btn-golive" onclick="toggleStream()">
-            <i class="ti ti-broadcast"></i> Go live
-          </button>
+          <button class="ctrl-btn go-live" id="btn-golive" onclick="toggleStream()"><i class="ti ti-broadcast"></i> Go live</button>
           <div class="ctrl-sep"></div>
-          <button class="ctrl-btn" id="btn-mic" onclick="toggleMic()" title="Mute/unmute mic" disabled>
-            <i class="ti ti-microphone"></i>
-          </button>
-          <button class="ctrl-btn" id="btn-cam" onclick="toggleCam()" title="Camera on/off" disabled>
-            <i class="ti ti-video"></i>
-          </button>
+          <button class="ctrl-btn" id="btn-mic" onclick="toggleMic()" title="Mute/unmute mic" disabled><i class="ti ti-microphone"></i></button>
+          <button class="ctrl-btn" id="btn-cam" onclick="toggleCam()" title="Camera on/off" disabled><i class="ti ti-video"></i></button>
           <div class="ctrl-sep"></div>
-          <button class="ctrl-btn" id="btn-screen" onclick="toggleScreen()" title="Share screen" disabled>
-            <i class="ti ti-screen-share"></i>
-          </button>
+          <button class="ctrl-btn" id="btn-screen" onclick="toggleScreen()" title="Share screen" disabled><i class="ti ti-screen-share"></i></button>
         </div>
-
-        <!-- VIEWER controls -->
         <div id="viewer-controls" style="display:none;align-items:center;gap:8px;width:100%;justify-content:center">
-          <button class="ctrl-btn" id="btn-raise" onclick="raiseHand()" title="Request to speak">
-            <i class="ti ti-hand-stop"></i>
-          </button>
+          <button class="ctrl-btn" id="btn-raise" onclick="raiseHand()" title="Request to speak"><i class="ti ti-hand-stop"></i></button>
           <span style="font-size:13px;color:var(--text-2)" id="raise-status"></span>
           <div class="ctrl-sep"></div>
-          <button class="ctrl-btn" id="btn-v-mic" onclick="toggleViewerMic()" style="display:none" title="Mute/unmute" disabled>
-            <i class="ti ti-microphone"></i>
-          </button>
-          <button class="ctrl-btn" id="btn-v-cam" onclick="toggleViewerCam()" style="display:none" title="Camera on/off" disabled>
-            <i class="ti ti-video"></i>
-          </button>
+          <button class="ctrl-btn" id="btn-v-mic" onclick="toggleViewerMic()" style="display:none" title="Mute/unmute" disabled><i class="ti ti-microphone"></i></button>
+          <button class="ctrl-btn" id="btn-v-cam" onclick="toggleViewerCam()" style="display:none" title="Camera on/off" disabled><i class="ti ti-video"></i></button>
         </div>
       </div>
     </div>
 
-    <!-- SIDEBAR -->
     <div class="sidebar">
       <div class="sidebar-tabs">
-        <button class="stab active" id="stab-chat" onclick="showSTab('chat')">
-          <i class="ti ti-message"></i> Chat
-        </button>
-        <button class="stab" id="stab-queue" onclick="showSTab('queue')">
-          <i class="ti ti-users"></i> Queue
-          <span class="cnt" id="queue-cnt" style="display:none">0</span>
-        </button>
-        <button class="stab" id="stab-share" onclick="showSTab('share')">
-          <i class="ti ti-share"></i> Share
-        </button>
+        <button class="stab active" id="stab-chat" onclick="showSTab('chat')"><i class="ti ti-message"></i> Chat</button>
+        <button class="stab" id="stab-queue" onclick="showSTab('queue')"><i class="ti ti-users"></i> Queue <span class="cnt" id="queue-cnt" style="display:none">0</span></button>
+        <button class="stab" id="stab-share" onclick="showSTab('share')"><i class="ti ti-share"></i> Share</button>
       </div>
 
-      <!-- CHAT PANEL -->
       <div id="chat-panel" class="visible">
         <div class="chat-messages" id="chat-messages"></div>
-        <div class="locked-banner" id="locked-banner" style="display:none">
-          <i class="ti ti-lock"></i> Chatroom has been restricted
-        </div>
+        <div class="locked-banner" id="locked-banner" style="display:none"><i class="ti ti-lock"></i> Chatroom has been restricted</div>
         <div class="chat-input-area">
           <div class="chat-input-row">
             <input id="chat-inp" type="text" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()">
-            <button class="ctrl-btn" style="border-radius:var(--radius);width:34px;height:34px;font-size:16px" onclick="sendChat()">
-              <i class="ti ti-send"></i>
-            </button>
+            <button class="ctrl-btn" style="border-radius:var(--radius);width:34px;height:34px;font-size:16px" onclick="sendChat()"><i class="ti ti-send"></i></button>
           </div>
         </div>
       </div>
 
-      <!-- QUEUE PANEL -->
       <div id="queue-panel">
-        <div class="queue-list" id="queue-list">
-          <div class="queue-empty">No one in queue yet</div>
-        </div>
+        <div class="queue-list" id="queue-list"><div class="queue-empty">No one in queue yet</div></div>
       </div>
 
-      <!-- SHARE PANEL -->
       <div id="share-panel">
         <div class="share-content">
-          <div class="share-box">
-            <div class="share-label">Room code</div>
-            <div class="share-val" id="share-room-code">—</div>
-            <button class="copy-btn" onclick="copyText('room-code')">
-              <i class="ti ti-copy"></i> Copy code
-            </button>
-          </div>
-          <div class="share-box">
-            <div class="share-label">Viewer link (share this)</div>
-            <div class="share-val" id="share-viewer-link">—</div>
-            <button class="copy-btn" onclick="copyText('viewer-link')">
-              <i class="ti ti-copy"></i> Copy link
-            </button>
-          </div>
-          <div class="share-box">
-            <div class="share-label">Server</div>
-            <div class="share-val" id="share-server">—</div>
-          </div>
+          <div class="share-box"><div class="share-label">Room code</div><div class="share-val" id="share-room-code">—</div><button class="copy-btn" onclick="copyText('room-code')"><i class="ti ti-copy"></i> Copy code</button></div>
+          <div class="share-box"><div class="share-label">Viewer link (share this)</div><div class="share-val" id="share-viewer-link">—</div><button class="copy-btn" onclick="copyText('viewer-link')"><i class="ti ti-copy"></i> Copy link</button></div>
+          <div class="share-box"><div class="share-label">Server</div><div class="share-val" id="share-server">—</div></div>
         </div>
-        <!-- host-only strip -->
         <div class="host-strip" id="host-strip" style="display:none">
           <div class="host-strip-title">Host controls</div>
           <div class="host-actions">
-            <button class="h-btn" id="btn-lock-chat" onclick="toggleChatLock()">
-              <i class="ti ti-lock"></i> Lock chat
-            </button>
-            <button class="h-btn" id="btn-end-stream" onclick="endStream()" style="background:var(--danger-bg);color:var(--danger-txt);border-color:transparent">
-              <i class="ti ti-player-stop"></i> End stream
-            </button>
+            <button class="h-btn" id="btn-lock-chat" onclick="toggleChatLock()"><i class="ti ti-lock"></i> Lock chat</button>
+            <button class="h-btn" id="btn-end-stream" onclick="endStream()" style="background:var(--danger-bg);color:var(--danger-txt);border-color:transparent"><i class="ti ti-player-stop"></i> End stream</button>
           </div>
         </div>
       </div>
@@ -400,7 +270,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 
 <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
 <script>
-// ── STATE ──────────────────────────────────────────────────────────────────
 let room = null;
 let isHost = false;
 let isStreaming = false;
@@ -416,13 +285,29 @@ let serverUrl = '';
 let apiKey = '';
 let apiSecret = '';
 let streamTitle = '';
-let queueMap = {}; // identity -> {name, sid, status}
+let queueMap = {};
 let activeCaller = null;
 let viewerMicTrack = null;
 let viewerCamTrack = null;
 let inQueue = false;
 
-// ── LOBBY ──────────────────────────────────────────────────────────────────
+// FIX 1 & 2: High quality video constraints for camera and screen
+const HD_VIDEO_CONSTRAINTS = {
+  width: { ideal: 1920, min: 1280 },
+  height: { ideal: 1080, min: 720 },
+  frameRate: { ideal: 30, min: 24 }
+};
+
+const HD_SCREEN_CONSTRAINTS = {
+  video: {
+    width: { ideal: 1920 },
+    height: { ideal: 1080 },
+    frameRate: { ideal: 30 },
+    cursor: 'always'
+  },
+  audio: true  // FIX 3: capture system audio from screen share
+};
+
 function switchTab(t) {
   document.getElementById('tab-host').classList.toggle('active', t==='host');
   document.getElementById('tab-viewer').classList.toggle('active', t==='viewer');
@@ -437,13 +322,11 @@ function showErr(msg) {
   e.style.display = 'block';
 }
 
-// check URL params for viewer auto-fill
 window.addEventListener('DOMContentLoaded', () => {
   const p = new URLSearchParams(location.search);
   if (p.get('room')) {
     switchTab('viewer');
     document.getElementById('v-room').value = p.get('room');
-    if (p.get('server')) document.getElementById('v-link').value = location.href;
   }
 });
 
@@ -453,10 +336,8 @@ async function startHost() {
   serverUrl = document.getElementById('h-url').value.trim();
   apiKey = document.getElementById('h-key').value.trim();
   apiSecret = document.getElementById('h-secret').value.trim();
-
   if (!myName) return showErr('Please enter your name.');
   if (!serverUrl || !apiKey || !apiSecret) return showErr('Please fill in all server fields.');
-
   isHost = true;
   myRoom = 'bctv-' + Math.random().toString(36).slice(2,8);
   await enterStudio();
@@ -467,9 +348,6 @@ async function joinViewer() {
   const code = document.getElementById('v-room').value.trim();
   if (!myName) return showErr('Please enter your display name.');
   if (!code) return showErr('Please enter the room code from the host.');
-
-  // For demo: use default server/key/secret since viewer link doesn't carry them
-  // In production these come from your backend token endpoint
   serverUrl = 'wss://213.136.65.25.nip.io';
   apiKey = 'bctvapikey';
   apiSecret = '035f5cfdff25c751619356e2fff174b8ba4bf7bef58f372eb1894c96e1d2bd58';
@@ -483,22 +361,18 @@ function joinFromLink() {
   if (!link) return showErr('Please paste a viewer link.');
   try {
     const url = new URL(link);
-    const room = url.searchParams.get('room');
-    if (room) document.getElementById('v-room').value = room;
+    const r = url.searchParams.get('room');
+    if (r) document.getElementById('v-room').value = r;
     joinViewer();
   } catch(e) { showErr('Invalid link format.'); }
 }
 
-// ── STUDIO SETUP ───────────────────────────────────────────────────────────
 async function enterStudio() {
   document.getElementById('lobby').style.display = 'none';
   document.getElementById('studio').style.display = 'flex';
   document.getElementById('stream-title-display').textContent = streamTitle;
   document.getElementById('role-badge').className = 'badge ' + (isHost ? 'badge-danger' : 'badge-info');
-  document.getElementById('role-badge').innerHTML = isHost
-    ? '<i class="ti ti-broadcast"></i> Host'
-    : '<i class="ti ti-eye"></i> Viewer';
-
+  document.getElementById('role-badge').innerHTML = isHost ? '<i class="ti ti-broadcast"></i> Host' : '<i class="ti ti-eye"></i> Viewer';
   if (isHost) {
     document.getElementById('host-controls').style.display = 'flex';
     document.getElementById('host-strip').style.display = 'block';
@@ -509,7 +383,6 @@ async function enterStudio() {
     document.getElementById('viewer-waiting').style.display = 'flex';
     document.getElementById('video-stage').style.display = 'none';
   }
-
   await connectRoom();
 }
 
@@ -520,7 +393,6 @@ function setupSharePanel() {
   document.getElementById('share-server').textContent = serverUrl;
 }
 
-// ── TOKEN ──────────────────────────────────────────────────────────────────
 async function generateToken(roomName, identity, canPublish) {
   const enc = new TextEncoder();
   const b64url = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
@@ -537,24 +409,54 @@ async function generateToken(roomName, identity, canPublish) {
   return `${msg}.${b64url(sig)}`;
 }
 
-// ── CONNECT ────────────────────────────────────────────────────────────────
 async function connectRoom() {
   setConnBadge('Connecting...','info');
   try {
     const token = await generateToken(myRoom, myName, isHost);
-    room = new LivekitClient.Room();
+    room = new LivekitClient.Room({
+      // FIX 1: set adaptive stream + dynacast for best quality
+      adaptiveStream: false,
+      dynacast: false,
+      videoCaptureDefaults: {
+        resolution: { width: 1920, height: 1080, frameRate: 30 }
+      },
+      publishDefaults: {
+        videoEncoding: {
+          maxBitrate: 3_000_000,
+          maxFramerate: 30
+        },
+        screenShareEncoding: {
+          maxBitrate: 5_000_000,
+          maxFramerate: 30
+        },
+        // FIX 3: enable audio always
+        audioPreset: { maxBitrate: 128_000 },
+        dtx: false
+      }
+    });
     setupRoomEvents();
     await room.connect(serverUrl, token);
     setConnBadge('Connected','success');
 
     if (isHost) {
-      // get local tracks ready
       try {
-        const tracks = await LivekitClient.createLocalTracks({audio:true,video:true});
-        for (const t of tracks) {
-          if (t.kind==='video') localVideoTrack = t;
-          if (t.kind==='audio') localAudioTrack = t;
-        }
+        // FIX 1: request HD camera
+        const mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: HD_VIDEO_CONSTRAINTS,
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            sampleRate: 48000
+          }
+        });
+
+        // Create tracks from the HD stream
+        const videoTrack = mediaStream.getVideoTracks()[0];
+        const audioTrack = mediaStream.getAudioTracks()[0];
+
+        localVideoTrack = new LivekitClient.LocalVideoTrack(videoTrack);
+        localAudioTrack = new LivekitClient.LocalAudioTrack(audioTrack);
+
         addLocalVideo();
         document.getElementById('btn-mic').disabled = false;
         document.getElementById('btn-cam').disabled = false;
@@ -575,7 +477,6 @@ function setConnBadge(txt, type) {
   b.innerHTML = `<i class="ti ${icons[type]} ${type==='info'?'spin':''}"></i> ${txt}`;
 }
 
-// ── ROOM EVENTS ────────────────────────────────────────────────────────────
 function setupRoomEvents() {
   room.on(LivekitClient.RoomEvent.ParticipantConnected, p => {
     addSystemMsg(p.identity + ' joined');
@@ -586,15 +487,11 @@ function setupRoomEvents() {
     addSystemMsg(p.identity + ' left');
     updateViewerCount();
     removeVideoBox('remote-' + p.sid);
-    if (queueMap[p.identity]) {
-      delete queueMap[p.identity];
-      renderQueue();
-    }
+    if (queueMap[p.identity]) { delete queueMap[p.identity]; renderQueue(); }
   });
 
   room.on(LivekitClient.RoomEvent.TrackSubscribed, (track, pub, participant) => {
     if (track.kind === 'video') {
-      // host started streaming — show stage to viewers
       if (!isHost) {
         document.getElementById('viewer-waiting').style.display = 'none';
         document.getElementById('video-stage').style.display = 'grid';
@@ -602,12 +499,19 @@ function setupRoomEvents() {
       }
       addRemoteVideo(track, participant);
     }
+    // FIX 3: attach audio tracks so sound plays
+    if (track.kind === 'audio') {
+      const el = track.attach();
+      el.style.display = 'none';
+      document.body.appendChild(el);
+    }
   });
 
   room.on(LivekitClient.RoomEvent.TrackUnsubscribed, (track, pub, participant) => {
+    track.detach();
     if (track.kind==='video') {
       removeVideoBox('remote-' + participant.sid);
-      if (!isHost && document.getElementById('video-stage').querySelectorAll('.vbox').length === 0) {
+      if (!isHost && document.getElementById('video-stage').querySelectorAll('.vbox').length===0) {
         document.getElementById('viewer-waiting').style.display = 'flex';
         document.getElementById('video-stage').style.display = 'none';
       }
@@ -615,10 +519,7 @@ function setupRoomEvents() {
   });
 
   room.on(LivekitClient.RoomEvent.DataReceived, (data, participant) => {
-    try {
-      const msg = JSON.parse(new TextDecoder().decode(data));
-      handleDataMsg(msg, participant);
-    } catch(e) {}
+    try { handleDataMsg(JSON.parse(new TextDecoder().decode(data)), participant); } catch(e) {}
   });
 
   room.on(LivekitClient.RoomEvent.Disconnected, () => {
@@ -626,7 +527,6 @@ function setupRoomEvents() {
   });
 }
 
-// ── DATA MESSAGES ──────────────────────────────────────────────────────────
 function handleDataMsg(msg, sender) {
   switch(msg.type) {
     case 'chat':
@@ -656,17 +556,12 @@ function handleDataMsg(msg, sender) {
     case 'queue-join':
       if (isHost) {
         queueMap[msg.identity] = { name: msg.name, sid: sender?.sid, status: 'waiting' };
-        renderQueue();
-        updateQueueBadge();
+        renderQueue(); updateQueueBadge();
         addSystemMsg(msg.name + ' wants to speak');
       }
       break;
     case 'queue-leave':
-      if (isHost) {
-        delete queueMap[msg.identity];
-        renderQueue();
-        updateQueueBadge();
-      }
+      if (isHost) { delete queueMap[msg.identity]; renderQueue(); updateQueueBadge(); }
       break;
     case 'caller-accepted':
       if (msg.identity === myName && !isHost) {
@@ -693,20 +588,18 @@ function handleDataMsg(msg, sender) {
 
 async function broadcast(msg) {
   if (!room) return;
-  const data = new TextEncoder().encode(JSON.stringify(msg));
-  await room.localParticipant.publishData(data, { reliable: true });
+  await room.localParticipant.publishData(new TextEncoder().encode(JSON.stringify(msg)), { reliable: true });
 }
 
-// ── STREAM CONTROLS ────────────────────────────────────────────────────────
 async function toggleStream() {
   if (!isStreaming) {
-    // Go live
-    if (!localVideoTrack || !localAudioTrack) {
-      addSystemMsg('No camera/mic available');
-      return;
-    }
-    await room.localParticipant.publishTrack(localVideoTrack);
-    await room.localParticipant.publishTrack(localAudioTrack);
+    if (!localVideoTrack || !localAudioTrack) { addSystemMsg('No camera/mic available'); return; }
+    await room.localParticipant.publishTrack(localVideoTrack, {
+      videoEncoding: { maxBitrate: 3_000_000, maxFramerate: 30 }
+    });
+    await room.localParticipant.publishTrack(localAudioTrack, {
+      audioPreset: { maxBitrate: 128_000 }
+    });
     isStreaming = true;
     document.getElementById('live-pill').style.display = 'inline-flex';
     document.getElementById('btn-golive').innerHTML = '<i class="ti ti-player-stop"></i> Stop stream';
@@ -719,9 +612,15 @@ async function toggleStream() {
 }
 
 async function stopStream() {
-  if (localVideoTrack) await room.localParticipant.unpublishTrack(localVideoTrack);
-  if (localAudioTrack) await room.localParticipant.unpublishTrack(localAudioTrack);
-  if (screenTrack) { screenTrack.stop(); screenTrack = null; }
+  if (localVideoTrack) {
+    try { await room.localParticipant.unpublishTrack(localVideoTrack); } catch(e) {}
+  }
+  if (localAudioTrack) {
+    try { await room.localParticipant.unpublishTrack(localAudioTrack); } catch(e) {}
+  }
+  if (screenTrack) {
+    try { await room.localParticipant.unpublishTrack(screenTrack); screenTrack.stop(); screenTrack = null; } catch(e) {}
+  }
   isStreaming = false;
   document.getElementById('live-pill').style.display = 'none';
   document.getElementById('btn-golive').innerHTML = '<i class="ti ti-broadcast"></i> Go live';
@@ -735,58 +634,107 @@ async function endStream() {
   if (room) room.disconnect();
 }
 
+// FIX 4: mute track instead of stopping it — prevents freeze/crash
 async function toggleMic() {
   if (!localAudioTrack) return;
   micMuted = !micMuted;
-  localAudioTrack.mute(micMuted);
+  await localAudioTrack.mute(micMuted);
   const btn = document.getElementById('btn-mic');
   btn.classList.toggle('active', micMuted);
   btn.innerHTML = micMuted ? '<i class="ti ti-microphone-off"></i>' : '<i class="ti ti-microphone"></i>';
 }
 
+// FIX 4: mute video track instead of stopping/unpublishing — prevents freeze
 async function toggleCam() {
   if (!localVideoTrack) return;
   camOff = !camOff;
-  localVideoTrack.mute(camOff);
+  await localVideoTrack.mute(camOff);
   const btn = document.getElementById('btn-cam');
   btn.classList.toggle('active', camOff);
   btn.innerHTML = camOff ? '<i class="ti ti-video-off"></i>' : '<i class="ti ti-video"></i>';
+
+  // show/hide camera-off overlay on local box
+  const box = document.getElementById('local-box');
+  if (!box) return;
+  let overlay = box.querySelector('.muted-overlay');
+  if (camOff) {
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'muted-overlay';
+      overlay.innerHTML = '<i class="ti ti-video-off"></i><span>Camera off</span>';
+      box.appendChild(overlay);
+    }
+  } else {
+    if (overlay) overlay.remove();
+  }
 }
 
 async function toggleScreen() {
   if (screenTrack) {
-    await room.localParticipant.unpublishTrack(screenTrack);
+    try { await room.localParticipant.unpublishTrack(screenTrack); } catch(e) {}
     screenTrack.stop();
     screenTrack = null;
     document.getElementById('btn-screen').classList.remove('active');
     document.getElementById('btn-screen').innerHTML = '<i class="ti ti-screen-share"></i>';
+    removeVideoBox('screen-box');
   } else {
     try {
-      const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-      screenTrack = new LivekitClient.LocalVideoTrack(stream.getVideoTracks()[0]);
-      await room.localParticipant.publishTrack(screenTrack);
+      // FIX 2 & 3: HD screen share with system audio
+      const stream = await navigator.mediaDevices.getDisplayMedia(HD_SCREEN_CONSTRAINTS);
+      const videoTrack = stream.getVideoTracks()[0];
+      screenTrack = new LivekitClient.LocalVideoTrack(videoTrack);
+
+      await room.localParticipant.publishTrack(screenTrack, {
+        videoEncoding: { maxBitrate: 5_000_000, maxFramerate: 30 },
+        name: 'screen'
+      });
+
+      // FIX 3: publish screen audio if captured
+      const audioTracks = stream.getAudioTracks();
+      if (audioTracks.length > 0) {
+        const screenAudio = new LivekitClient.LocalAudioTrack(audioTracks[0]);
+        await room.localParticipant.publishTrack(screenAudio);
+      }
+
+      // show screen in local stage
+      const stage = document.getElementById('video-stage');
+      let box = document.getElementById('screen-box');
+      if (!box) {
+        box = document.createElement('div');
+        box.className = 'vbox';
+        box.id = 'screen-box';
+        stage.appendChild(box);
+      }
+      box.innerHTML = '';
+      const el = screenTrack.attach();
+      box.appendChild(el);
+      const lbl = document.createElement('div');
+      lbl.className = 'vlabel';
+      lbl.textContent = 'Your screen';
+      box.appendChild(lbl);
+      updateStageLayout();
+
       document.getElementById('btn-screen').classList.add('active');
       document.getElementById('btn-screen').innerHTML = '<i class="ti ti-screen-share-off"></i>';
-      stream.getVideoTracks()[0].onended = () => {
-        room.localParticipant.unpublishTrack(screenTrack);
+
+      videoTrack.onended = () => {
+        try { room.localParticipant.unpublishTrack(screenTrack); } catch(e) {}
         screenTrack = null;
         document.getElementById('btn-screen').classList.remove('active');
         document.getElementById('btn-screen').innerHTML = '<i class="ti ti-screen-share"></i>';
+        removeVideoBox('screen-box');
       };
     } catch(e) { addSystemMsg('Screen share cancelled'); }
   }
 }
 
-// ── HOST CHAT/QUEUE CONTROLS ───────────────────────────────────────────────
-function toggleChatLock() {
+async function toggleChatLock() {
   chatLocked = !chatLocked;
   applyChatLock();
   broadcast({ type: 'chat-lock', locked: chatLocked });
   const btn = document.getElementById('btn-lock-chat');
   btn.classList.toggle('active', chatLocked);
-  btn.innerHTML = chatLocked
-    ? '<i class="ti ti-lock-open"></i> Unlock chat'
-    : '<i class="ti ti-lock"></i> Lock chat';
+  btn.innerHTML = chatLocked ? '<i class="ti ti-lock-open"></i> Unlock chat' : '<i class="ti ti-lock"></i> Lock chat';
   addSystemMsg(chatLocked ? 'You locked the chatroom' : 'You unlocked the chatroom');
 }
 
@@ -806,13 +754,11 @@ function acceptCaller(identity) {
 function endCaller(identity) {
   activeCaller = null;
   delete queueMap[identity];
-  renderQueue();
-  updateQueueBadge();
+  renderQueue(); updateQueueBadge();
   broadcast({ type: 'caller-ended', identity });
   addSystemMsg(identity + ' call ended');
 }
 
-// ── VIEWER CONTROLS ────────────────────────────────────────────────────────
 async function raiseHand() {
   if (inQueue) {
     inQueue = false;
@@ -829,27 +775,32 @@ async function raiseHand() {
 
 async function activateViewerAV() {
   try {
-    const tracks = await LivekitClient.createLocalTracks({audio:true,video:true});
-    for (const t of tracks) {
-      await room.localParticipant.publishTrack(t);
-      if (t.kind==='video') { viewerCamTrack = t; addLocalVideo(true); }
-      if (t.kind==='audio') viewerMicTrack = t;
-    }
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: HD_VIDEO_CONSTRAINTS,
+      audio: { echoCancellation: true, noiseSuppression: true }
+    });
+    const vt = stream.getVideoTracks()[0];
+    const at = stream.getAudioTracks()[0];
+    viewerCamTrack = new LivekitClient.LocalVideoTrack(vt);
+    viewerMicTrack = new LivekitClient.LocalAudioTrack(at);
+    await room.localParticipant.publishTrack(viewerCamTrack);
+    await room.localParticipant.publishTrack(viewerMicTrack);
+    addLocalVideo(true);
     document.getElementById('btn-v-mic').disabled = false;
     document.getElementById('btn-v-cam').disabled = false;
   } catch(e) { addSystemMsg('Camera/mic unavailable: ' + e.message); }
 }
 
 async function deactivateViewerAV() {
-  if (viewerCamTrack) { await room.localParticipant.unpublishTrack(viewerCamTrack); viewerCamTrack = null; }
-  if (viewerMicTrack) { await room.localParticipant.unpublishTrack(viewerMicTrack); viewerMicTrack = null; }
+  if (viewerCamTrack) { try { await room.localParticipant.unpublishTrack(viewerCamTrack); } catch(e) {} viewerCamTrack = null; }
+  if (viewerMicTrack) { try { await room.localParticipant.unpublishTrack(viewerMicTrack); } catch(e) {} viewerMicTrack = null; }
   removeVideoBox('local-box');
 }
 
 async function toggleViewerMic() {
   if (!viewerMicTrack) return;
   const muted = viewerMicTrack.isMuted;
-  viewerMicTrack.mute(!muted);
+  await viewerMicTrack.mute(!muted);
   const btn = document.getElementById('btn-v-mic');
   btn.classList.toggle('active', !muted);
   btn.innerHTML = !muted ? '<i class="ti ti-microphone-off"></i>' : '<i class="ti ti-microphone"></i>';
@@ -858,13 +809,12 @@ async function toggleViewerMic() {
 async function toggleViewerCam() {
   if (!viewerCamTrack) return;
   const muted = viewerCamTrack.isMuted;
-  viewerCamTrack.mute(!muted);
+  await viewerCamTrack.mute(!muted);
   const btn = document.getElementById('btn-v-cam');
   btn.classList.toggle('active', !muted);
   btn.innerHTML = !muted ? '<i class="ti ti-video-off"></i>' : '<i class="ti ti-video"></i>';
 }
 
-// ── VIDEO BOXES ────────────────────────────────────────────────────────────
 function addLocalVideo(isViewer) {
   const stage = document.getElementById('video-stage');
   let box = document.getElementById('local-box');
@@ -876,10 +826,7 @@ function addLocalVideo(isViewer) {
   }
   box.innerHTML = '';
   const track = isViewer ? viewerCamTrack : localVideoTrack;
-  if (track) {
-    const el = track.attach();
-    box.appendChild(el);
-  }
+  if (track) { const el = track.attach(); box.appendChild(el); }
   if (!isViewer) {
     const hb = document.createElement('div');
     hb.className = 'host-badge-v';
@@ -925,7 +872,6 @@ function updateStageLayout() {
   stage.className = 'video-stage ' + (['','solo','duo','trio','quad'][Math.min(n,4)] || 'quad');
 }
 
-// ── CHAT ───────────────────────────────────────────────────────────────────
 async function sendChat() {
   const inp = document.getElementById('chat-inp');
   const txt = inp.value.trim();
@@ -939,48 +885,27 @@ async function sendChat() {
 function addChatMsg(who, txt, isSystem, pinned) {
   const box = document.getElementById('chat-messages');
   const d = document.createElement('div');
-  if (isSystem) {
-    d.className = 'chat-msg system';
-    d.textContent = txt;
-  } else if (pinned) {
-    d.className = 'chat-msg pinned';
-    d.innerHTML = `<i class="ti ti-pin" style="font-size:12px"></i> <strong>${who}:</strong> ${txt}`;
-  } else {
-    d.className = 'chat-msg';
-    d.innerHTML = `<span class="who">${who}:</span> <span class="txt">${txt}</span>`;
-  }
+  if (isSystem) { d.className = 'chat-msg system'; d.textContent = txt; }
+  else { d.className = 'chat-msg'; d.innerHTML = `<span class="who">${who}:</span> <span class="txt">${txt}</span>`; }
   box.appendChild(d);
   box.scrollTop = box.scrollHeight;
 }
 
 function addSystemMsg(txt) { addChatMsg('', txt, true); }
 
-// ── QUEUE ──────────────────────────────────────────────────────────────────
 function renderQueue() {
   const list = document.getElementById('queue-list');
   const entries = Object.entries(queueMap);
-  if (entries.length === 0) {
-    list.innerHTML = '<div class="queue-empty">No one in queue yet</div>';
-    return;
-  }
+  if (entries.length === 0) { list.innerHTML = '<div class="queue-empty">No one in queue yet</div>'; return; }
   list.innerHTML = '';
   entries.forEach(([identity, info], i) => {
     const item = document.createElement('div');
     item.className = 'queue-item' + (info.status==='active' ? ' active-caller' : '');
-    item.innerHTML = `
-      <div>
-        <div class="qi-name">${info.name}</div>
-        <div class="qi-pos">${info.status==='active' ? 'On air' : '#' + (i+1) + ' in queue'}</div>
-      </div>
-      <div class="qi-actions">
-        ${info.status==='active'
-          ? `<button class="qi-btn reject" onclick="endCaller('${identity}')"><i class="ti ti-phone-off"></i> End call</button>`
-          : isHost
-            ? `<button class="qi-btn accept" onclick="acceptCaller('${identity}')"><i class="ti ti-phone"></i> Accept</button>
-               <button class="qi-btn reject" onclick="endCaller('${identity}')"><i class="ti ti-x"></i></button>`
-            : ''
-        }
-      </div>`;
+    item.innerHTML = `<div><div class="qi-name">${info.name}</div><div class="qi-pos">${info.status==='active' ? 'On air' : '#'+(i+1)+' in queue'}</div></div>
+    <div class="qi-actions">${info.status==='active'
+      ? `<button class="qi-btn reject" onclick="endCaller('${identity}')"><i class="ti ti-phone-off"></i> End call</button>`
+      : isHost ? `<button class="qi-btn accept" onclick="acceptCaller('${identity}')"><i class="ti ti-phone"></i> Accept</button><button class="qi-btn reject" onclick="endCaller('${identity}')"><i class="ti ti-x"></i></button>` : ''
+    }</div>`;
     list.appendChild(item);
   });
 }
@@ -992,7 +917,6 @@ function updateQueueBadge() {
   el.textContent = cnt;
 }
 
-// ── SIDEBAR TABS ───────────────────────────────────────────────────────────
 function showSTab(name) {
   ['chat','queue','share'].forEach(n => {
     document.getElementById('stab-'+n).classList.toggle('active', n===name);
@@ -1000,17 +924,13 @@ function showSTab(name) {
   });
 }
 
-// ── MISC ───────────────────────────────────────────────────────────────────
 function updateViewerCount() {
-  const n = room ? room.numParticipants : 0;
-  document.getElementById('viewer-count').textContent = n;
+  document.getElementById('viewer-count').textContent = room ? room.numParticipants : 0;
 }
 
 function copyText(which) {
   const el = document.getElementById('share-' + (which==='room-code' ? 'room-code' : 'viewer-link'));
-  navigator.clipboard.writeText(el.textContent).then(() => {
-    addSystemMsg('Copied to clipboard');
-  });
+  navigator.clipboard.writeText(el.textContent).then(() => addSystemMsg('Copied to clipboard'));
 }
 </script>
 </body>
